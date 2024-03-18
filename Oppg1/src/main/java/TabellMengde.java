@@ -123,7 +123,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
+        for (T element: annenMengde.tilTabell()) {
+            leggTil(element);
+        }
     }
 
     @Override
@@ -148,7 +150,12 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public T[] tilTabell() {
-        return null;
+        T[] mengdeTilTabell = (T[]) new Object[antall];
+
+        for (int i = 0; i < antall; i++) {
+            mengdeTilTabell[i] = tabell[i];
+        }
+        return mengdeTilTabell;
     }
 
     @Override

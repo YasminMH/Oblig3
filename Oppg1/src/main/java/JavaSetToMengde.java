@@ -71,7 +71,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public T[] tilTabell() {
-        return setToMengde.toArray();
+        return null;
     }
 
     @Override

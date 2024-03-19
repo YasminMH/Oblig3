@@ -29,7 +29,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         if (erTom()) {
             return false;
         }
-        for ()
         return false;
     }
 

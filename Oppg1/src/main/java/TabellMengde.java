@@ -38,7 +38,13 @@ public class TabellMengde<T> implements MengdeADT<T> {
         if (erTom()){
             return true;
         }
+        if (antall > annenMengde.antallElementer()){
+            return false;
+        }
         for (T element: tabell){
+            if (element == null) {
+                continue;
+            }
             if (!annenMengde.inneholder(element)) {
                 return false;
             }
@@ -51,12 +57,18 @@ public class TabellMengde<T> implements MengdeADT<T> {
         if (erTom() && annenMengde.erTom()) {
             return true;
         }
-        for (T element: tabell){
-            if (annenMengde.inneholder(element)) {
-                return true;
+        if (antall != annenMengde.antallElementer()) {
+            return false;
+        }
+        for (T element : tabell){
+            if (element == null) {
+                continue;
+            }
+            if (!annenMengde.inneholder(element)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -64,7 +76,10 @@ public class TabellMengde<T> implements MengdeADT<T> {
         if (erTom() && annenMengde.erTom()) {
             return false;
         }
-        for (T element: tabell) {
+        for (T element : tabell) {
+            if (element == null) {
+                continue;
+            }
             if (annenMengde.inneholder(element)) {
                 return false;
             }
@@ -77,6 +92,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
         MengdeADT<T> snittAvToMengder = new TabellMengde<>();
 
         for (T element : tabell) {
+            if (element == null) {
+                continue;
+            }
             if (annenMengde.inneholder(element)) {
                 snittAvToMengder.leggTil(element);
             }
@@ -89,6 +107,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
         MengdeADT<T> unionAvToMengder = annenMengde;
 
         for (T element : tabell) {
+            if (element == null) {
+                continue;
+            }
             if (!unionAvToMengder.inneholder(element)) {
                 unionAvToMengder.leggTil(element);
             }
@@ -103,6 +124,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
         MengdeADT<T> mengdeMinusAnnenMangde = new TabellMengde<>();
 
         for (T element : tabell) {
+            if (element == null) {
+                continue;
+            }
             if (!annenMengde.inneholder(element)) {
                 mengdeMinusAnnenMangde.leggTil(element);
             }
@@ -123,7 +147,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-        for (T element: annenMengde.tilTabell()) {
+        for (T element : annenMengde.tilTabell()) {
             leggTil(element);
         }
     }

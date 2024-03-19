@@ -16,6 +16,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         return setToMengde.isEmpty();
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean inneholder(T element) {
         return setToMengde.contains(element);
@@ -58,12 +59,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     @Override
     public void leggTil(T element) {
         setToMengde.add(element);
-
     }
 
+    // Ferdig ------------------------
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
+        for (T element : annenMengde.tilTabell()) {
+            leggTil(element);
+        }
     }
 
     // Ferdig ------------------------
@@ -73,6 +76,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         return element;
     }
 
+    // Ferdig ------------------------
     @Override
     public T[] tilTabell() {
         int antall = setToMengde.size();

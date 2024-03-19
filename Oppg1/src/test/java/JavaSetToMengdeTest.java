@@ -104,6 +104,7 @@ class JavaSetToMengdeTest {
         assertArrayEquals(resMi.tilTabell(), m0.tilTabell());
     }
 
+    // Ferdig ------------------------
     @Test
     void leggTilAlleFra() {
         m0.leggTilAlleFra(mi2);

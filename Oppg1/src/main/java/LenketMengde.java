@@ -74,7 +74,9 @@ public class LenketMengde<T> implements MengdeADT<T>{
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
+        for (T element : annenMengde.tilTabell()) {
+            leggTil(element);
+        }
     }
 
     @Override

@@ -37,7 +37,7 @@ class LenketMengdeTest {
 
 
 
-
+    // Ferdig ------------------------
     @Test
     void erTom() {
         assertEquals(0, m0.antallElementer());

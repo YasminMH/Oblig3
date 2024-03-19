@@ -19,6 +19,7 @@ public class LenketMengde<T> implements MengdeADT<T>{
         antall = 0;
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean erTom() {
         return antall == 0;
@@ -62,9 +63,13 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return null;
     }
 
+    // Ferdig ------------------------
     @Override
     public void leggTil(T element) {
-
+        Node ny = new Node(element);
+        ny.neste = forste;
+        forste = ny;
+        antall++;
     }
 
     @Override
@@ -79,11 +84,17 @@ public class LenketMengde<T> implements MengdeADT<T>{
 
     @Override
     public T[] tilTabell() {
-        return null;
+        @SuppressWarnings("unchecked")
+        T[] mengdeTilTabell = (T[]) new Object[antall];
+
+        // Kopiere over alle elementene
+
+        return mengdeTilTabell;
     }
 
+    // Ferdig ------------------------
     @Override
     public int antallElementer() {
-        return 0;
+        return antall;
     }
 }

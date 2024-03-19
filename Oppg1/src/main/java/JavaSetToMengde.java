@@ -10,6 +10,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         setToMengde = new HashSet<T>();
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean erTom() {
         return setToMengde.isEmpty();
@@ -53,6 +54,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         return null;
     }
 
+    // Ferdig ------------------------
     @Override
     public void leggTil(T element) {
         setToMengde.add(element);
@@ -64,18 +66,24 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     }
 
+    // Ferdig ------------------------
     @Override
     public T fjern(T element) {
-        return null;
+        setToMengde.remove(element);
+        return element;
     }
 
     @Override
     public T[] tilTabell() {
-        return null;
+        int antall = setToMengde.size();
+        T[] mengdeTilTabell = (T[]) new Object[antall];
+        System.arraycopy(setToMengde.toArray(), 0, mengdeTilTabell, 0, antall);
+        return mengdeTilTabell;
     }
 
+    // Ferdig ------------------------
     @Override
     public int antallElementer() {
-        return 0;
+        return setToMengde.size();
     }
 }

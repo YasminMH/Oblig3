@@ -116,10 +116,9 @@ class LenketMengdeTest {
 
     @Test
     void tilTabell() {
-        // Call the tilTabell method and assert its return type
         Object[] result = m0.tilTabell();
         assertNotNull(result);
-        assertEquals(0, result.length); // Assuming tilTabell returns an empty array initially
+        assertEquals(0, result.length);
     }
 
     // Ferdig ------------------------

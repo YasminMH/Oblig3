@@ -111,6 +111,7 @@ class JavaSetToMengdeTest {
     void fjern() {
         mi1.fjern(4);
         assertArrayEquals(resMi.tilTabell(), mi1.tilTabell());
+        assertEquals(null, mi1.fjern(3));
     }
 
     @Test

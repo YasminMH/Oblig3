@@ -19,13 +19,11 @@ public class LenketMengde<T> implements MengdeADT<T>{
         antall = 0;
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean erTom() {
         return antall == 0;
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean inneholder(T element) {
         if (erTom()) {
@@ -41,7 +39,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return false;
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         if (erTom()){
@@ -58,7 +55,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return true;
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
         if (erTom() && annenMengde.erTom()) {
@@ -75,7 +71,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return true;
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
         if (erTom() && annenMengde.erTom()) {
@@ -89,7 +84,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return true;
     }
 
-    // Ferdig ------------------------
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         MengdeADT<T> snittAvToMengder = new LenketMengde<>();
@@ -119,7 +113,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return unionAvToMengder;
     }
 
-    // Ferdig ------------------------
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         MengdeADT<T> mengdeMinusAnnenMangde = new LenketMengde<>();
@@ -132,16 +125,16 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return mengdeMinusAnnenMangde;
     }
 
-    // Ferdig ------------------------
     @Override
     public void leggTil(T element) {
-        Node ny = new Node(element);
-        ny.neste = forste;
-        forste = ny;
-        antall++;
+        if (!inneholder(element)) {
+            Node ny = new Node(element);
+            ny.neste = forste;
+            forste = ny;
+            antall++;
+        }
     }
 
-    // Ferdig ------------------------
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
         for (T element : annenMengde.tilTabell()) {
@@ -149,7 +142,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         }
     }
 
-    // Ferdig ------------------------
     @Override
     public T fjern(T element) {
         if (erTom()) {
@@ -168,7 +160,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return null;
     }
 
-    // Ferdig ------------------------
     @Override
     public T[] tilTabell() {
         @SuppressWarnings("unchecked")
@@ -185,7 +176,6 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return mengdeTilTabell;
     }
 
-    // Ferdig ------------------------
     @Override
     public int antallElementer() {
         return antall;

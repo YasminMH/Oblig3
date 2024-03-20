@@ -36,8 +36,6 @@ class LenketMengdeTest {
     }
 
 
-
-    // Ferdig ------------------------
     @Test
     void erTom() {
         assertEquals(0, m0.antallElementer());
@@ -47,7 +45,6 @@ class LenketMengdeTest {
         assertFalse(ms1.erTom());
     }
 
-    // Ferdig ------------------------
     @Test
     void inneholder() {
         assertTrue(mi1.inneholder(1));
@@ -57,7 +54,6 @@ class LenketMengdeTest {
         assertFalse(mi1.inneholder(2));
     }
 
-    // Ferdig ------------------------
     @Test
     void erDelmengdeAv() {
         assertTrue(m0.erDelmengdeAv(m0));
@@ -66,7 +62,6 @@ class LenketMengdeTest {
         assertFalse(ms2.erDelmengdeAv(ms1));
     }
 
-    // Ferdig ------------------------
     @Test
     void erLik() {
         assertTrue(m0.erLik(m0));
@@ -76,7 +71,6 @@ class LenketMengdeTest {
 
     }
 
-    // Ferdig ------------------------
     @Test
     void erDisjunkt() {
         assertTrue(mi1.erDisjunkt(m0));
@@ -84,13 +78,11 @@ class LenketMengdeTest {
         assertFalse(ms1.erDisjunkt(ms2));
     }
 
-    // Ferdig ------------------------
     @Test
     void snitt() {
         assertArrayEquals(resMi.tilTabell(), mi1.snitt(mi2).tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void union() {
         assertTrue(mi2.union(mi1).inneholder(1));
@@ -100,20 +92,20 @@ class LenketMengdeTest {
         assertFalse(mi2.union(mi1).erTom());
     }
 
-    // Ferdig ------------------------
     @Test
     void minus() {
         assertArrayEquals(m0.tilTabell(), mi1.minus(mi1).tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void leggTil() {
         m0.leggTil(1);
         assertArrayEquals(resMi.tilTabell(), m0.tilTabell());
+        int antall = mi2.antallElementer();
+        mi2.leggTil(1);
+        assertEquals(antall, mi2.antallElementer());
     }
 
-    // Ferdig ------------------------
     @Test
     void leggTilAlleFra() {
         m0.leggTilAlleFra(mi2);
@@ -123,14 +115,13 @@ class LenketMengdeTest {
         assertFalse(m0.erTom());
     }
 
-    // Ferdig ------------------------
     @Test
     void fjern() {
         mi1.fjern(4);
         assertArrayEquals(resMi.tilTabell(), mi1.tilTabell());
+        assertEquals(null, mi1.fjern(3));
     }
 
-    // Ferdig ------------------------
     @Test
     void tilTabell() {
         Object[] result = m0.tilTabell();
@@ -138,7 +129,6 @@ class LenketMengdeTest {
         assertEquals(0, result.length);
     }
 
-    // Ferdig ------------------------
     @Test
     void antallElementer() {
         assertEquals(0, m0.antallElementer());

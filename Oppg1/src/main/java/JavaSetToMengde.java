@@ -118,8 +118,13 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public T fjern(T element) {
-        setToMengde.remove(element);
-        return element;
+        if (inneholder(element)) {
+            setToMengde.remove(element);
+            return element;
+        }
+        else {
+            return null;
+        }
     }
 
     @Override

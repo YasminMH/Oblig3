@@ -1,6 +1,4 @@
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class JavaSetToMengde<T> implements MengdeADT<T> {
 
@@ -10,13 +8,11 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         setToMengde = new HashSet<T>();
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean erTom() {
         return setToMengde.isEmpty();
     }
 
-    // Ferdig ------------------------
     @Override
     public boolean inneholder(T element) {
         return setToMengde.contains(element);
@@ -24,44 +20,90 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        if (setToMengde.isEmpty()) {
+        if (erTom()) {
             return true;
         }
-        return setToMengde.containsAll((Collection<?>) annenMengde);
+        if (antallElementer() > annenMengde.antallElementer()) {
+            return false;
+        }
+        for (T element : setToMengde) {
+            if (!annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return false;
+        if (erTom() && annenMengde.erTom()) {
+            return true;
+        }
+        if (antallElementer() != annenMengde.antallElementer()) {
+            return false;
+        }
+        for (T element : setToMengde) {
+            if (!annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        if (erTom() && annenMengde.erTom()) {
+            return false;
+        }
+        for (T element : setToMengde) {
+            if (annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> snittAvToMengder = new JavaSetToMengde<>();
+
+        for (T element : setToMengde) {
+            if (annenMengde.inneholder(element)) {
+                snittAvToMengder.leggTil(element);
+            }
+        }
+        return snittAvToMengder;
     }
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> unionAvToMengder = annenMengde;
+
+        for (T element : setToMengde) {
+            if (!unionAvToMengder.inneholder(element)) {
+                unionAvToMengder.leggTil(element);
+            }
+        }
+        return unionAvToMengder;
     }
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> mengdeMinusAnnenMangde = new JavaSetToMengde<>();
+
+        for (T element : setToMengde) {
+            if (!annenMengde.inneholder(element)) {
+                mengdeMinusAnnenMangde.leggTil(element);
+            }
+        }
+        return mengdeMinusAnnenMangde;
     }
 
-    // Ferdig ------------------------
     @Override
     public void leggTil(T element) {
         setToMengde.add(element);
     }
 
-    // Ferdig ------------------------
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
         for (T element : annenMengde.tilTabell()) {
@@ -69,14 +111,12 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         }
     }
 
-    // Ferdig ------------------------
     @Override
     public T fjern(T element) {
         setToMengde.remove(element);
         return element;
     }
 
-    // Ferdig ------------------------
     @Override
     public T[] tilTabell() {
         int antall = setToMengde.size();
@@ -85,7 +125,6 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         return mengdeTilTabell;
     }
 
-    // Ferdig ------------------------
     @Override
     public int antallElementer() {
         return setToMengde.size();

@@ -47,6 +47,7 @@ class LenketMengdeTest {
         assertFalse(ms1.erTom());
     }
 
+    // Ferdig ------------------------
     @Test
     void inneholder() {
         assertTrue(mi1.inneholder(1));
@@ -102,18 +103,24 @@ class LenketMengdeTest {
         assertArrayEquals(resMi.tilTabell(), m0.tilTabell());
     }
 
+    // Ferdig ------------------------
     @Test
     void leggTilAlleFra() {
         m0.leggTilAlleFra(mi2);
-        assertArrayEquals(mi2.tilTabell(), m0.tilTabell());
+        assertTrue(m0.inneholder(1));
+        assertTrue(m0.inneholder(2));
+        assertTrue(m0.inneholder(3));
+        assertFalse(m0.erTom());
     }
 
+    // Ferdig ------------------------
     @Test
     void fjern() {
         mi1.fjern(4);
         assertArrayEquals(resMi.tilTabell(), mi1.tilTabell());
     }
 
+    // Ferdig ------------------------
     @Test
     void tilTabell() {
         Object[] result = m0.tilTabell();

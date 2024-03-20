@@ -38,7 +38,6 @@ class JavaSetToMengdeTest {
 
 
 
-    // Ferdig ------------------------
     @Test
     void erTom() {
         assertEquals(0, m0.antallElementer());
@@ -48,7 +47,6 @@ class JavaSetToMengdeTest {
         assertFalse(ms1.erTom());
     }
 
-    // Ferdig ------------------------
     @Test
     void inneholder() {
         assertTrue(mi1.inneholder(1));
@@ -97,28 +95,24 @@ class JavaSetToMengdeTest {
         assertArrayEquals(m0.tilTabell(), mi1.minus(mi1).tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void leggTil() {
         m0.leggTil(1);
         assertArrayEquals(resMi.tilTabell(), m0.tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void leggTilAlleFra() {
         m0.leggTilAlleFra(mi2);
         assertArrayEquals(mi2.tilTabell(), m0.tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void fjern() {
         mi1.fjern(4);
         assertArrayEquals(resMi.tilTabell(), mi1.tilTabell());
     }
 
-    // Ferdig ------------------------
     @Test
     void tilTabell() {
         Object[] result = m0.tilTabell();
@@ -126,7 +120,6 @@ class JavaSetToMengdeTest {
         assertEquals(0, result.length);
     }
 
-    // Ferdig ------------------------
     @Test
     void antallElementer() {
         assertEquals(0, m0.antallElementer());

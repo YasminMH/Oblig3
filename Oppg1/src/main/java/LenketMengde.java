@@ -25,10 +25,18 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return antall == 0;
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean inneholder(T element) {
         if (erTom()) {
             return false;
+        }
+        Node temp = forste;
+        while (temp != null) {
+            if (temp.data.equals(element)) {
+                return true;
+            }
+            temp = temp.neste;
         }
         return false;
     }
@@ -72,6 +80,7 @@ public class LenketMengde<T> implements MengdeADT<T>{
         antall++;
     }
 
+    // Ferdig ------------------------
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
         for (T element : annenMengde.tilTabell()) {
@@ -79,17 +88,38 @@ public class LenketMengde<T> implements MengdeADT<T>{
         }
     }
 
+    // Ferdig ------------------------
     @Override
     public T fjern(T element) {
+        if (erTom()) {
+            return null;
+        }
+        Node temp = forste;
+        while (temp != null) {
+            if (temp.data.equals(element)) {
+                temp.data = forste.data;
+                forste = forste.neste;
+                antall--;
+                return element;
+            }
+            temp = temp.neste;
+        }
         return null;
     }
 
+    // Ferdig ------------------------
     @Override
     public T[] tilTabell() {
         @SuppressWarnings("unchecked")
         T[] mengdeTilTabell = (T[]) new Object[antall];
 
-        // Kopiere over alle elementene
+        Node temp = forste;
+        int i = 0;
+        while (temp != null) {
+            mengdeTilTabell[i] = temp.data;
+            temp = temp.neste;
+            i++;
+        }
 
         return mengdeTilTabell;
     }

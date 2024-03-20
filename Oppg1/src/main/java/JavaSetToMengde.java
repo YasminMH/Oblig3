@@ -77,9 +77,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        MengdeADT<T> unionAvToMengder = annenMengde;
+        MengdeADT<T> unionAvToMengder = new JavaSetToMengde<>();
 
         for (T element : setToMengde) {
+            if (!unionAvToMengder.inneholder(element)) {
+                unionAvToMengder.leggTil(element);
+            }
+        }
+        for (T element : annenMengde.tilTabell()) {
             if (!unionAvToMengder.inneholder(element)) {
                 unionAvToMengder.leggTil(element);
             }

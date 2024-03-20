@@ -41,34 +41,95 @@ public class LenketMengde<T> implements MengdeADT<T>{
         return false;
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        return false;
+        if (erTom()){
+            return true;
+        }
+        if (antall > annenMengde.antallElementer()){
+            return false;
+        }
+        for (T element: tilTabell()){
+            if (!annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return false;
+        if (erTom() && annenMengde.erTom()) {
+            return true;
+        }
+        if (antall != annenMengde.antallElementer()) {
+            return false;
+        }
+        for (T element : tilTabell()){
+            if (!annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
+    // Ferdig ------------------------
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        if (erTom() && annenMengde.erTom()) {
+            return false;
+        }
+        for (T element : tilTabell()) {
+            if (annenMengde.inneholder(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
+    // Ferdig ------------------------
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> snittAvToMengder = new LenketMengde<>();
+
+        for (T element : tilTabell()) {
+            if (annenMengde.inneholder(element)) {
+                snittAvToMengder.leggTil(element);
+            }
+        }
+        return snittAvToMengder;
     }
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> unionAvToMengder = new LenketMengde<>();
+
+        for (T element : tilTabell()) {
+            if (!unionAvToMengder.inneholder(element)) {
+                unionAvToMengder.leggTil(element);
+            }
+        }
+        for (T element : annenMengde.tilTabell()) {
+            if (!unionAvToMengder.inneholder(element)) {
+                unionAvToMengder.leggTil(element);
+            }
+        }
+        return unionAvToMengder;
     }
 
+    // Ferdig ------------------------
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> mengdeMinusAnnenMangde = new LenketMengde<>();
+
+        for (T element : tilTabell()) {
+            if (!annenMengde.inneholder(element)) {
+                mengdeMinusAnnenMangde.leggTil(element);
+            }
+        }
+        return mengdeMinusAnnenMangde;
     }
 
     // Ferdig ------------------------

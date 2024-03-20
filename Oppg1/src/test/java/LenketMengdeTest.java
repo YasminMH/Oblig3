@@ -57,6 +57,7 @@ class LenketMengdeTest {
         assertFalse(mi1.inneholder(2));
     }
 
+    // Ferdig ------------------------
     @Test
     void erDelmengdeAv() {
         assertTrue(m0.erDelmengdeAv(m0));
@@ -65,6 +66,7 @@ class LenketMengdeTest {
         assertFalse(ms2.erDelmengdeAv(ms1));
     }
 
+    // Ferdig ------------------------
     @Test
     void erLik() {
         assertTrue(m0.erLik(m0));
@@ -74,6 +76,7 @@ class LenketMengdeTest {
 
     }
 
+    // Ferdig ------------------------
     @Test
     void erDisjunkt() {
         assertTrue(mi1.erDisjunkt(m0));
@@ -81,16 +84,23 @@ class LenketMengdeTest {
         assertFalse(ms1.erDisjunkt(ms2));
     }
 
+    // Ferdig ------------------------
     @Test
     void snitt() {
         assertArrayEquals(resMi.tilTabell(), mi1.snitt(mi2).tilTabell());
     }
 
+    // Ferdig ------------------------
     @Test
     void union() {
-        assertArrayEquals(mi2.tilTabell(), mi2.union(resMi).tilTabell());
+        assertTrue(mi2.union(mi1).inneholder(1));
+        assertTrue(mi2.union(mi1).inneholder(2));
+        assertTrue(mi2.union(mi1).inneholder(3));
+        assertTrue(mi2.union(mi1).inneholder(4));
+        assertFalse(mi2.union(mi1).erTom());
     }
 
+    // Ferdig ------------------------
     @Test
     void minus() {
         assertArrayEquals(m0.tilTabell(), mi1.minus(mi1).tilTabell());
